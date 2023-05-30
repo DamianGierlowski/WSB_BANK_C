@@ -1,0 +1,66 @@
+@using System.Collections
+@model BankApp.Models.Account
+@{
+    ViewData["Title"] = "Details";
+    var income = ViewData["income"] as List<Transactions>;
+    var exspense = ViewData["expense"] as List<Transactions>;
+}
+
+<div>
+    <h2>Transaction History</h2>
+    <h4>Income History</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    From
+                </th>
+                <th>
+                    Amount
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in income) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(transItem => item.Source!.Number)
+                </td>
+                <td>
+                    @Html.DisplayFor(transItem => item.Value)
+                </td>
+                
+            </tr>
+    }
+        </tbody>
+    </table>
+    <h4>Expenses History</h4>
+    <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        To
+                    </th>
+                    <th>
+                        Amount
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+        @foreach (var item in exspense) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(transItem => item.Recipient!.Number)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(transItem => item.Value)
+                    </td>
+                </tr>
+        }
+            </tbody>
+        </table>
+    
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

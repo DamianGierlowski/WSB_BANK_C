@@ -1,0 +1,42 @@
+@model IEnumerable<BankApp.Models.Transactions>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Transaction list</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Source)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Recipient)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Value)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Source!.Number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Recipient!.Number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Value)
+            </td>
+            <td>
+                <a asp-action="Delete" asp-route-id="@item.Id">Cancel transactions</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
